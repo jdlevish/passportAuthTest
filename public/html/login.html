@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+
+    </br>
+    </br>
+
+    <form id="login">
+        <label>Email: </label><input type="text" value="" id="email">
+        <label>Password: </label><input type="password" value="" id="password">
+        <button type="submit" id="submit">Login</button>
+    </form>
+    <script>
+        var xhttp = new XMLHttpRequest();
+        var submit = document.getElementById("login");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password")
+        submit.onsubmit = (event) => {
+            var res = xhttp.responseText
+            event.preventDefault();
+
+
+            $.ajax({ url: "/api/users/login", method: "POST", data: { email: email.value, password: password.value } })
+                .then(res => {
+                    console.log(res.user)
+
+                })
+        }
+
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
